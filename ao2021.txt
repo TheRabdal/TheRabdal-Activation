@@ -8,12 +8,17 @@ set /P bpkey= < temp.txt
 set pkeyt=%bpkey:~-5%
 echo.&cscript //nologo ospp.vbs /unpkey:%pkeyt% >nul&goto ucpkey
 :skunpkey
-echo.&echo =====================================================================================&echo Mengaktivasi Office 2021 anda, silahkan tunggu...&echo =====================================================================================&cscript //nologo slmgr.vbs /ckms >nul&cscript //nologo ospp.vbs /setprt:1688 >nul&set i=1&cscript //nologo ospp.vbs /inpkey:FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH >nul||goto notsupported
+del temp.txt >nul 2>nul&echo.&echo =====================================================================================&echo Mengaktivasi Office 2021 anda, silahkan tunggu...&echo =====================================================================================&cscript //nologo ospp.vbs /setprt:1688 >nul&set i=1&cscript //nologo ospp.vbs /inpkey:FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH >nul||goto notsupported
 :skms
-if %i% GTR 5 (goto busy) else if %i% LEQ 5 (set KMS=s8.mshost.pro)
+if %i% GTR 5 (goto busy)
+if %i% EQU 1 (set KMS=s8.mshost.pro)
+if %i% EQU 2 (set KMS=kms8.msguides.com)
+if %i% EQU 3 (set KMS=kms.digiboy.ir)
+if %i% EQU 4 (set KMS=107.175.77.222)
+if %i% EQU 5 (set KMS=s9.mshost.pro)
 cscript //nologo ospp.vbs /sethst:%KMS% >nul
 :ato
-echo.&echo =====================================================================================&cscript //nologo ospp.vbs /act >nul&timeout /t 5 >nul&echo.&cscript //nologo ospp.vbs /act | find /i "successful" && (echo.&echo =====================================================================================&echo.&echo.&echo Dukung kami dengan donasi via bagibagi.co/TheRabdal agar cara ini bisa terus digunakan.&echo.& if errorlevel 2 exit) || (echo Sepertinya butuh waktu lebih, silahkan tunggu... & echo. & echo. & set /a i+=1 & timeout /t 10 >nul & goto skms)&timeout /t 7 >nul&explorer "https://bagibagi.co/TheRabdal"&echo.&echo Jika sudah donasi dan Office masih bermasalah, chat via Instagram @windows.ku&echo.&goto halt
+echo.&echo =====================================================================================&cscript //nologo ospp.vbs /act >nul&timeout /t 5 >nul&echo.&cscript //nologo ospp.vbs /act | find /i "successful" && (echo.&echo =====================================================================================&echo.&echo.&echo Dukung kami dengan donasi via bagibagi.co/TheRabdal agar cara ini bisa terus digunakan.&echo.) || (echo Sepertinya butuh waktu lebih, silahkan tunggu... & echo. & echo. & set /a i+=1 & timeout /t 10 >nul & goto skms)&timeout /t 7 >nul&explorer "https://bagibagi.co/TheRabdal"&echo.&echo Jika sudah donasi dan Office masih bermasalah, chat via Instagram @windows.ku&echo.&goto halt
 :notsupported
 echo =====================================================================================&echo.&echo Maaf, Office 2021 anda tidak support.&echo.&goto halt
 :wshdisabled
